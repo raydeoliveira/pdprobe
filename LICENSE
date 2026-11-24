@@ -1,0 +1,25 @@
+pdprobe Commercial Software License Agreement (EULA)
+Version 1.0 — Effective 2026
+
+Copyright (c) 2026 Raymond de Oliveira. All rights reserved.
+
+1. GRANT OF LICENSE
+pdprobe (and its pdctl alias and libpdprobe.a library) is distributed under two tiers:
+(a) Free Core Tier: USB-C host and tester discovery (probe), USB-PD PDO/RDO
+    auditing (audit), live and fixture telemetry (telemetry), safe 5V rollback
+    (reset), --dry-run trigger validation, --describe, --help, --version, and
+    the stdio MCP server (mcp) for read-only and dry_run=true tool calls.
+(b) Commercial Pro Tier ($29 USD one-time perpetual Polar.sh license, up to 3
+    personal machines): live hardware PD/PPS/EPR-AVS triggering via `pdprobe
+    trigger` and `trigger_pd_pps` (`dry_run: false`). Open-source builds
+    compiled with `-DOSS_EDITION` unlock all capabilities offline with no
+    license checks.
+
+2. RESTRICTIONS
+Except where permitted under an explicit MIT License distribution by the
+copyright holder, redistribution, resale, or license bypass is prohibited.
+
+3. HARDWARE SAFETY & DISCLAIMER OF WARRANTY
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THE COPYRIGHT HOLDER IS NOT LIABLE FOR ANY HARDWARE, POWER DELIVERY,
+CHARGER, OR DEVICE DAMAGE ARISING FROM USE OF THIS SOFTWARE.
