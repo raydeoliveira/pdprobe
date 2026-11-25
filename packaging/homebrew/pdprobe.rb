@@ -1,19 +1,19 @@
 class Pdprobe < Formula
   desc "C17 USB-C PD/PPS auditor, telemetry reader & trigger CLI + MCP server"
-  homepage "https://github.com/raydeoliveira/pdprobe"
-  version "0.1.0"
+  homepage "https://www.raymonddeoliveira.com/software#pdprobe"
+  version "0.2.0"
   license :cannot_represent
 
   on_macos do
     depends_on arch: :arm64
     depends_on macos: :sonoma
-    url "https://github.com/raydeoliveira/pdprobe/releases/download/v0.1.0/pdprobe-0.1.0-macos-arm64.tar.gz"
-    sha256 "e4327b9f949769ffcdbfb355e5671a1e89b902042408834589200547e61ba332"
+    url "https://github.com/raydeoliveira/pdprobe/releases/download/v0.2.0/pdprobe-0.2.0-macos-arm64.tar.gz"
+    sha256 "1eed70ba8c9e3b364a751d3c7fc97c543b7504ed340f9c44086ef67ce1a1e2b8"
   end
 
   on_linux do
-    url "https://github.com/raydeoliveira/pdprobe/releases/download/v0.1.0/pdprobe-0.1.0-linux-x86_64.tar.gz"
-    sha256 "4add419b76bd80b0f13d9794b809893586096c20aa08c37d3d928f1980aa4bcc"
+    url "https://github.com/raydeoliveira/pdprobe/releases/download/v0.2.0/pdprobe-0.2.0-linux-x86_64.tar.gz"
+    sha256 "5e1dec78192deb11850dae2f07e5251f5ff4a3d14bc3778672e95f149ec5f857"
   end
 
   def install
@@ -26,8 +26,8 @@ class Pdprobe < Formula
   end
 
   test do
-    assert_match "pdprobe 0.1.0", shell_output("#{bin}/pdprobe --version")
-    assert_match "pdprobe 0.1.0", shell_output("#{bin}/pdctl --version")
+    assert_match "pdprobe 0.2.0", shell_output("#{bin}/pdprobe --version")
+    assert_match "pdprobe 0.2.0", shell_output("#{bin}/pdctl --version")
     describe_json = shell_output("#{bin}/pdprobe --describe")
     assert_match "\"schema_version\":1", describe_json
     assert_match "\"km003c\"", shell_output("#{bin}/pdprobe probe --sim --json")

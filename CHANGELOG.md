@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+- **Charger & Cable Bottleneck Diagnostics (`audit_diag.c`)**: `pdprobe audit` (human `Summary:` + JSON/MCP `diagnostics` object) computes `negotiated_mw`, `max_source_mw`, `headroom_mw`, `has_pps`, `has_epr`, `cable_5a_capable`, `bottleneck` (`unattached`, `legacy_5v_only`, `cable_or_source_3a_cap`, `idle`, `below_source_max`, `none`), and plain-English verdict.
+- **Telemetry Session Summaries**: `pdprobe telemetry` and MCP `read_pd_telemetry` now include single-pass min/avg/max VBUS/IBUS/Power and total mAh/mWh in both JSON (`summary`) and multi-sample human footers.
+- **Expanded Free Core & Actionable Exit 5**: Interactive fixed SPR (`5V–20V`, `<= 100W`, TTY confirmation + 5V rollback) is now Free Core to lower real-world dongle testing friction; Pro ($29) gates programmable PPS/EPR-AVS, unattended `--yes`/`--from-json` scripting, and live MCP `trigger_pd_pps` (`dry_run: false`), with direct Polar checkout URL in exit-5 error hints.
+- **Discoverability & Glama Container**: Added checksum-verified `Dockerfile` (`ENTRYPOINT ["pdprobe", "mcp"]`), `debian:bookworm-slim` (GLIBC 2.36) portable `linux-x86_64` tarball builds, and public-repo install/MCP instructions (measured `217,264`-byte macOS binary, `307,472`-byte `libpdprobe.a`).
+
 ## 0.1.0
 - **Core, Codecs & Fixtures (M1)**: Clean-room C17 Ports & Adapters implementation (`libpdprobe.a`, `pdprobe`, `pdctl` symlink), USB-PD 3.0/3.1/3.2 PDO/APDO/EPR/RDO bitfield codec, Power-Z KM003C `PutData`/`AdcData_TypeDef`/PD packet/PDM serial codecs, FNIRSI FNB58 64-byte HID + CRC-8 (`poly=0x39, init=0x42`) telemetry & experimental `0x85`/`0x86` codecs, 1024-slot O(1) telemetry ring buffer, deterministic JSON & binary fixtures, and ASan/UBSan test suites.
 - **Hardware Adapters & Safety Rollback (M2)**: Live Apple Silicon `IOKit` host auditing (`AppleSmartBattery` 13-slot `& 0xFFFFFFFF` PDO scan, `IOPort`, `AdapterDetails` with `SerialString` redaction), macOS `IOHIDManager`/`IOUSBLib`/CDC-ACM adapters, Linux `sysfs`/`hidraw`/`usbfs` (`USBDEVFS_DISCONNECT`)/`/dev/ttyACM*` adapters, `lstat`-guarded atomic snapshots, `<= 20V / <= 100W` default safety cap (`--allow-epr`), `--experimental` FNB58 gate, non-TTY `--yes` gate, and non-restarting `sigaction(sa_flags=0)` + `poll()` auto-revert to safe 5V.

@@ -3,7 +3,7 @@
   "name": "io.github.raydeoliveira/pdprobe",
   "title": "pdprobe",
   "description": "USB-C PD/PPS auditor, telemetry reader & trigger MCP server for Apple Silicon, KM003C, and FNB58.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://github.com/raydeoliveira/pdprobe",
   "repository": {
     "url": "https://github.com/raydeoliveira/pdprobe",
@@ -12,32 +12,20 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/raydeoliveira/pdprobe/releases/download/v0.1.0/pdprobe-0.1.0-macos-arm64.mcpb",
-      "version": "0.1.0",
+      "identifier": "https://github.com/raydeoliveira/pdprobe/releases/download/v0.2.0/pdprobe-0.2.0-macos-arm64.mcpb",
+      "version": "0.2.0",
+      "fileSha256": "27fae7a4b579c207b52cc2d5d79cfb36023cc6a52b08aa40b483f5eeff462a93",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
           "name": "PDPROBE_LICENSE_KEY",
-          "description": "Optional Polar.sh license key read by `pdprobe license activate` to unlock live `trigger_pd_pps` hardware writes (`dry_run: false`).",
+          "description": "Optional Polar.sh license key unlocking live MCP trigger_pd_pps writes (dry_run: false).",
           "isRequired": false,
           "isSecret": true
-        },
-        {
-          "name": "XDG_CONFIG_HOME",
-          "description": "Optional base directory for `$XDG_CONFIG_HOME/pdprobe/license.json` commercial license cache.",
-          "isRequired": false,
-          "isSecret": false
-        },
-        {
-          "name": "PDPROBE_POLAR_API_URL",
-          "description": "Optional Polar.sh API base URL override (HTTPS or loopback HTTP only) for license activation/deactivation.",
-          "isRequired": false,
-          "isSecret": false
         }
-      ],
-      "fileSha256": "ada7de51e39624ba5a37d26c8c0352702da313856601b59ffa7ddf1ff5e17f1d"
+      ]
     }
   ]
 }

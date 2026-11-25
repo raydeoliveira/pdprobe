@@ -3,11 +3,11 @@
 > Clean-room C17 macOS and Linux CLI, static library (`libpdprobe.a`), and stdio MCP server for Apple Silicon IOKit, Linux sysfs, Power-Z KM003C, and FNIRSI FNB58 USB-C PDO auditing, live telemetry, and active PD/PPS triggering.
 
 ## Capabilities
-- **Host & Tester Auditing**: `probe` and `audit` decode USB-PD 3.0/3.1/3.2 PDOs/APDOs/RDOs across Apple Silicon `IOKit` (13-slot `& 0xFFFFFFFF` mask, `SerialString` redacted unless `--include-serial`), Linux `sysfs`, and Power-Z KM003C (`0x5FC9:0x0063`). FNB58 (`0x2E3C:0x5558`) lacks PDO readback (`exit 3`).
-- **Telemetry & Safe PD/PPS Triggering**: `telemetry` (`--stream` JSONL via 1024-slot O(1) ring buffer), `trigger` (defaults to `<= 20000 mV` / `<= 100000 mW`, `--allow-epr` up to 48V/240W, `--experimental` for FNB58, `--yes` non-TTY gate, `lstat`-guarded atomic snapshots, `sigaction` 5V auto-revert), and `reset` (always Free Core).
+- **Host & Tester Auditing**: `probe` and `audit` decode USB-PD 3.0/3.1/3.2 PDOs/APDOs/RDOs across Apple Silicon `IOKit` (13-slot `& 0xFFFFFFFF` mask, `SerialString` redacted unless `--include-serial`), Linux `sysfs`, and Power-Z KM003C (`0x5FC9:0x0063`), emitting charger/cable bottleneck `diagnostics` (`negotiated_mw`, `max_source_mw`, `headroom_mw`, `has_pps`, `has_epr`, `cable_5a_capable`, `bottleneck`, `verdict`). FNB58 (`0x2E3C:0x5558`) lacks PDO readback (`exit 3`).
+- **Telemetry & Safe PD/PPS Triggering**: `telemetry` (`--stream` JSONL via 1024-slot O(1) ring buffer + batch min/avg/max/mWh `summary`), `trigger` (defaults to `<= 20000 mV` / `<= 100000 mW`, `--allow-epr` up to 48V/240W, `--experimental` for FNB58, `--yes` non-TTY gate, `lstat`-guarded atomic snapshots, `sigaction` 5V auto-revert), and `reset` (always Free Core).
 - **AI-Agent & MCP Contract**: `--describe` manifest, `--json` envelope (`schema_version: 1`), `--from-json -` composability, `--sim` & `--fixture` modes, exit codes (`0, 1, 2, 3, 4, 5, 130`), `SKILL.md` (`name: pdprobe`), `server.json` (`io.github.raydeoliveira/pdprobe`), and stdio JSON-RPC 2.0 `pdprobe mcp` (`2024-11-05`) with 6 tools (`list_pd_profiles`, `probe_pd_devices`, `audit_pdos`, `read_pd_telemetry`, `trigger_pd_pps`, `reset_pd_safe5v`).
 
 ## Install & Licensing
-- Homebrew: `brew install raydeoliveira/tap/pdprobe` (`pdctl` symlink included) or `make release` / `make release OSS_EDITION=1`.
-- Free Core: `probe`, `audit`, `telemetry`, `reset`, `--dry-run`, `--describe`, `--version`, `--help`, read-only/dry-run `mcp`.
-- Commercial Pro ($29 one-time via Polar.sh: https://buy.polar.sh/polar_cl_oS3ab3YwDFdjshc4Fd3dTqa6cGsnJKJyHUnlt2fWdQz, or `-DOSS_EDITION` offline build): live `trigger` and live `trigger_pd_pps` (`dry_run: false`).
+- Homebrew: `brew tap raydeoliveira/tap && brew install pdprobe` (`pdctl` symlink included) or `make release` / `make release OSS_EDITION=1`.
+- Free Core: `probe`, `audit` (with bottleneck `diagnostics`), `telemetry` (with `summary`), `reset`, `--dry-run`, `--describe`, `--version`, `--help`, read-only/dry-run `mcp`, and interactive fixed SPR (`5–20V`, `<=100W`) live triggers.
+- Commercial Pro ($29 one-time via Polar.sh: https://buy.polar.sh/polar_cl_oS3ab3YwDFdjshc4Fd3dTqa6cGsnJKJyHUnlt2fWdQz, or `-DOSS_EDITION` offline build): programmable PPS/EPR-AVS live triggers, scripted `--yes`/`--from-json`, and live MCP `trigger_pd_pps` (`dry_run: false`).
