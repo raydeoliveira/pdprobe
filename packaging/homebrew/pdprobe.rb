@@ -1,5 +1,5 @@
 class Pdprobe < Formula
-  desc "C17 USB-C PD/PPS auditor, telemetry reader & trigger CLI + MCP server"
+  desc "Read USB-C Power Delivery profiles from KM003C and FNB58 meters"
   homepage "https://www.raymonddeoliveira.com/software#pdprobe"
   version "0.2.0"
   license :cannot_represent
@@ -12,6 +12,7 @@ class Pdprobe < Formula
   end
 
   on_linux do
+    depends_on arch: :x86_64
     url "https://github.com/raydeoliveira/pdprobe/releases/download/v0.2.0/pdprobe-0.2.0-linux-x86_64.tar.gz"
     sha256 "5e1dec78192deb11850dae2f07e5251f5ff4a3d14bc3778672e95f149ec5f857"
   end
