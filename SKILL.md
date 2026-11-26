@@ -13,8 +13,6 @@ description: >-
 ## Install & Discovery
 ```bash
 brew tap raydeoliveira/tap && brew install pdprobe
-# Or build from source (pdprobe-src):
-make release
 # Discover CLI + MCP capabilities in one call:
 pdprobe --describe
 pdprobe --version --json
@@ -26,7 +24,7 @@ pdprobe --help
 ## Free Core vs. Commercial Pro Boundary
 - **Free Core**: `probe`, `audit` (with `diagnostics` bottleneck analysis), `telemetry` (with `summary` min/avg/max/mWh), `reset`, `--dry-run`, `--describe`, `--version`, `--help`, read-only/`dry_run: true` MCP tools, and interactive TTY fixed SPR live triggers (`5V–20V`, `<=100W`, no `--yes`/`--from-json`).
 - **Pro ($29 one-time)**: Programmable PPS (`20 mV` stepping) & EPR-AVS (`>20V` / `<=240W`) live triggers, unattended `--yes` / `--from-json -` scripting, and live MCP `trigger_pd_pps` calls (`dry_run: false`). Exit `5` hints include the Polar.sh checkout URL (`https://buy.polar.sh/polar_cl_oS3ab3YwDFdjshc4Fd3dTqa6cGsnJKJyHUnlt2fWdQz`).
-- **`-DOSS_EDITION`**: Source build unlocks all triggers offline with no license checks.
+- The public v0.2.0 release provides macOS arm64 and Linux x86_64 archives. [Release downloads](https://github.com/raydeoliveira/pdprobe/releases/tag/v0.2.0)
 
 ## Safe Read-Only & Trigger Workflow
 

@@ -141,6 +141,12 @@ rm -rf "${XDG_CONFIG_HOME:-$HOME/.config}/pdprobe" "${XDG_STATE_HOME:-$HOME/.loc
 
 ## AI-Agent `--json`, UNIX Pipes & Stdio MCP
 
+With PDProbe installed, add the [agent instructions](SKILL.md) to your project for inspecting USB-C power profiles and interpreting charger telemetry.
+
+```sh
+npx skills add raydeoliveira/pdprobe
+```
+
 ### 1. Structured `--json` & Pipe Composability
 
 Every subcommand emits `{"schema_version": 1, "ok": ..., "command": "...", "data": ..., "error": ...}` on `stdout`:
